@@ -17,11 +17,7 @@ server <- function(input, output, session) {
     output$plot1 <- renderGirafe({
         scatter <- ggplot(data,aes(x=displ,y=hwy)) +
             geom_point_interactive(aes(tooltip=model, data_id=model))
-        x <- girafe(ggobj = scatter,
-                    options = list(opts_toolbar(position="bottomright"),
-                                             opts_toolbar(saveaspng = FALSE),
-                                             opts_hover(css = "fill:orange;cursor:pointer;stroke:black;r:5pt"),
-                                             opts_selection(type = "single", css = "fill:orange;stroke:black;r:5pt")))
+        x <- girafe(ggobj = scatter)
         x
     })
     observeEvent(input$plot1_selected,{
