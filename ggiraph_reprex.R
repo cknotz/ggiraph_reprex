@@ -1,16 +1,9 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+# This produces a Shiny app featuring two graphs linked by interactivity
 
 library(shiny)
     library(ggplot2)
     library(ggiraph)
-    
+
 # Load data
 data <- mpg
 
@@ -26,7 +19,7 @@ server <- function(input, output, session) {
             geom_point_interactive(aes(tooltip=model, data_id=model))
         x <- girafe(ggobj = scatter,
                     options = list(opts_toolbar(position="bottomright"),
-                                             opts_toolbar(saveaspng = FALSE), 
+                                             opts_toolbar(saveaspng = FALSE),
                                              opts_hover(css = "fill:orange;cursor:pointer;stroke:black;r:5pt"),
                                              opts_selection(type = "single", css = "fill:orange;stroke:black;r:5pt")))
         x
@@ -41,5 +34,5 @@ server <- function(input, output, session) {
     })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
